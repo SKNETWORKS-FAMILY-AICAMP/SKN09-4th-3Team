@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>대출 상환 금액 계산기</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background-color: #f8eedf;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 80px;
+      width: 100%;
+      background-color: #39462c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    header img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 60px;
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      top: 90px;
+      left: 230px;
+      width: 36px;
+      height: 36px;
+      background-color: #39462c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: left 0.3s ease;
+    }
+
+    .main-container {
+      display: flex;
+      height: calc(100vh - 80px);
+      margin-top: 80px;
+      overflow-y: auto;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #435334;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      transition: width 0.3s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 0;
+      padding: 0;
+    }
+
+    .sidebar img {
+      width: 180px;
+      height: auto;
+      margin-bottom: 20px;
+      transition: opacity 0.2s ease;
+    }
+
+    .sidebar.collapsed img {
+      opacity: 0;
+    }
+
+    .sidebar-link {
+      width: 160px;
+      margin: 8px 0;
+      padding: 10px;
+      background-color: #435334;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sidebar-link:hover {
+      background-color: #e4dbb8;
+      color: #2c351f;
+    }
+
+    .content {
+      flex: 1;
+      padding: 40px 60px;
+      overflow-y: auto;
+    }
+
+    .calculator-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .calculator-title,
+    .calculator-input,
+    select.calculator-input,
+    .info-box,
+    .calc-button {
+      width: 100%;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+
+    .calculator-title {
+      font-weight: bold;
+      font-size: 22px;
+      text-align: center;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff2dc;
+      margin-bottom: 24px;
+    }
+
+    .calculator-input {
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      background-color: #fff2dc;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    select.calculator-input {
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      background-color: #fff2dc;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .info-box {
+      background-color: #fdf6ea;
+      border: 1px solid #d2b280;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 24px;
+      font-size: 14px;
+    }
+
+    .calc-button {
+      margin-top: 24px;
+      display: block;
+      padding: 14px;
+      background-color: #39462c;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .calc-button:hover {
+      background-color: #2f3a25;
+    }
+
+    .result-table {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .result-table table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff2dc;
+    }
+
+    .result-table th,
+    .result-table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .result-table th {
+      background-color: #f5e4b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ 헤더 -->
+  <header>
+    <img src="{% static 'main/images/logo.png' %}" alt="로고">
+  </header>
+
+  <!-- ✅ 사이드바 토글 버튼 -->
+  <button class="sidebar-toggle" id="toggleBtn" onclick="toggleSidebar()">☰</button>
+
+  <!-- ✅ 메인 -->
+  <div class="main-container">
+    <!-- ✅ 사이드바 -->
+    <div class="sidebar" id="sidebar">
+      <img src="{% static 'main/images/logo3.png' %}" alt="Sidebar 로고">
+      <button onclick="location.href='/main'" class="sidebar-link"> 챗봇 상담</button>
+      <button onclick="location.href='/calculator'" class="sidebar-link"> 대출상환계산기</button>
+    </div>
+
+    <!-- ✅ 콘텐츠 -->
+    <div class="content">
+      <div class="calculator-box">
+        <div class="calculator-title">대출 상환 금액 계산기</div>
+
+        <input id="loanAmount" type="number" class="calculator-input" placeholder="대출금액 (원)">
+        <input id="interestRate" type="number" class="calculator-input" placeholder="연 이자율 (%)">
+        <input id="loanTerm" type="number" class="calculator-input" placeholder="대출기간 (년)">
+
+        <select id="repaymentType" class="calculator-input">
+          <option selected disabled>상환방법 선택</option>
+          <option value="lump">만기일시상환</option>
+          <option value="equalPayment">원리금균등분할상환</option>
+          <option value="equalPrincipal">원금균등분할상환</option>
+          <option value="deferred">거치 후 원금균등분할상환</option>
+        </select>
+
+        <div class="info-box">
+          <strong>상환방법 안내</strong>
+          <ul>
+            <li><b>만기일시상환:</b> 대출기간 동안 이자만 납입하고 원금은 만기에 일시 상환하는 방식</li>
+            <li><b>원리금균등분할상환:</b> 매월 동일한 금액(이자+원금)을 납입하는 방식</li>
+            <li><b>원금균등분할상환:</b> 매월 동일한 원금을 납입하고 이자는 잔액에 따라 달라짐</li>
+            <li><b>거치 후 원금균등분할상환:</b> 일정기간 이자만 납부 후 원금 상환 시작</li>
+          </ul>
+        </div>
+
+        <button class="calc-button" onclick="calculateLoan()">💰 계산하기</button>
+
+        <div id="result" class="result-table"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ JS -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const toggleBtn = document.getElementById('toggleBtn');
+      sidebar.classList.toggle('collapsed');
+      toggleBtn.style.left = sidebar.classList.contains('collapsed') ? '10px' : '230px';
+    }
+
+    function format(num) {
+      return parseInt(num).toLocaleString() + "원";
+    }
+
+    function calculateLoan() {
+      const principal = parseFloat(document.getElementById("loanAmount").value);
+      const rate = parseFloat(document.getElementById("interestRate").value) / 100 / 12;
+      const years = parseInt(document.getElementById("loanTerm").value);
+      const months = years * 12;
+      const type = document.getElementById("repaymentType").value;
+      const resultBox = document.getElementById("result");
+
+      if (!principal || !rate || !months || !type) {
+        alert("모든 항목을 입력해주세요.");
+        return;
+      }
+
+      let data = [];
+
+      if (type === "lump") {
+        const interest = principal * rate;
+        for (let i = 1; i <= months; i++) {
+          if (i < months) {
+            data.push([i, format(interest), format(principal)]);
+          } else {
+            data.push([i, format(interest + principal), format(0)]);
+          }
+        }
+      } else if (type === "equalPayment") {
+        const monthly = principal * rate * Math.pow(1 + rate, months) / (Math.pow(1 + rate, months) - 1);
+        let balance = principal;
+        for (let i = 1; i <= months; i++) {
+          const interest = balance * rate;
+          const principalPart = monthly - interest;
+          balance -= principalPart;
+          data.push([i, format(monthly), format(Math.max(0, balance))]);
+        }
+      } else if (type === "equalPrincipal") {
+        const principalPerMonth = principal / months;
+        let balance = principal;
+        for (let i = 1; i <= months; i++) {
+          const interest = balance * rate;
+          const total = principalPerMonth + interest;
+          balance -= principalPerMonth;
+          data.push([i, format(total), format(Math.max(0, balance))]);
+        }
+      } else if (type === "deferred") {
+        const grace = 12;
+        const repayMonths = months - grace;
+        const principalPerMonth = principal / repayMonths;
+        let balance = principal;
+
+        for (let i = 1; i <= grace; i++) {
+          const interest = balance * rate;
+          data.push([i, format(interest), format(balance)]);
+        }
+
+        for (let i = grace + 1; i <= months; i++) {
+          const interest = balance * rate;
+          const total = principalPerMonth + interest;
+          balance -= principalPerMonth;
+          data.push([i, format(total), format(Math.max(0, balance))]);
+        }
+      }
+
+      let html = "<table><thead><tr><th>회차</th><th>상환금</th><th>잔액</th></tr></thead><tbody>";
+      data.forEach(([n, pay, remain]) => {
+        html += `<tr><td>${n}</td><td>${pay}</td><td>${remain}</td></tr>`;
+      });
+      html += "</tbody></table>";
+      resultBox.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
+
+
+
