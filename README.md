@@ -90,7 +90,12 @@
 # 5. 요구사항 정의서 
 ![image](https://github.com/user-attachments/assets/31e35cfe-36cb-48a7-8559-41d803567566)
 
-# 6. 화면설계서 (캡처)
+# 6. 화면설계서
+![Image](https://github.com/user-attachments/assets/5c62ac03-5874-422d-917c-fb0948fb9693)
+
+![Image](https://github.com/user-attachments/assets/11e3ccb1-f0d4-452b-bb15-5fbaa7498b82)
+
+![Image](https://github.com/user-attachments/assets/321c9560-76d3-453b-9cf3-2cc3cd746cc1)
 # 7. WBS
 # 8. 테스트 계획 및 결과 보고서 (캡처)
 # 9. 수행결과(테스트/시연 페이지)
