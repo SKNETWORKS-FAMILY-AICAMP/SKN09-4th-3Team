@@ -87,7 +87,9 @@
 # 4. 시스템 구성도
 ![system_architect](https://github.com/user-attachments/assets/732f96f9-b2f7-400c-8e18-3a809252be30)
 
-# 5. 요구사항 정의서 (캡처)
+# 5. 요구사항 정의서 
+![image](https://github.com/user-attachments/assets/31e35cfe-36cb-48a7-8559-41d803567566)
+
 # 6. 화면설계서 (캡처)
 # 7. WBS
 # 8. 테스트 계획 및 결과 보고서 (캡처)
