@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lending Loan Mentor</title>
+  <style>
+    /* ... (스타일 생략 없이 전체 유지) ... */
+    body {
+      margin: 0;
+      font-family: 'Pretendard', sans-serif;
+      background-color: #f8eedf;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      background-color: #39462c;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    .menu-wrapper {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .menu-button {
+      background-color: #39462c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #39462c;
+      border: 1px solid #555;
+      border-radius: 10px;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      min-width: 140px;
+      z-index: 1001;
+    }
+
+    .dropdown-menu button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      text-align: left;
+      font-size: 14px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .dropdown-menu button:hover {
+      background-color: #2d3c25;
+    }
+
+    .dropdown-menu.open {
+      display: flex;
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      top: 90px;
+      left: 230px;
+      width: 36px;
+      height: 36px;
+      background-color: #39462c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+      transition: left 0.3s ease;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 80px);
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #435334;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      transition: width 0.3s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 0;
+      padding: 0;
+    }
+
+    .sidebar img {
+      width: 220px;
+      height: auto;
+      margin-bottom: 20px;
+      transition: opacity 0.2s ease;
+    }
+
+    .sidebar.collapsed img {
+      opacity: 0;
+    }
+
+    .sidebar-link {
+      width: 180px;
+      padding: 10px 15px;
+      margin: 8px 0;
+      background-color: #435334;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+      text-align: center;
+    }
+
+    .sidebar-link:hover {
+      background-color: #e4dbb8;
+      color: #2c351f;
+    }
+
+    .chat-area {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+    }
+
+    .chat-bubble {
+      max-width: 70%;
+      margin: 10px 0;
+      padding: 15px 20px;
+      border-radius: 20px;
+      line-height: 1.6;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      font-weight: bold;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #fff5e8;
+      border: 1px solid #ffe9cc;
+      display: flex;
+    }
+
+    .bot::before {
+      content: 'A';
+      background-color: #e7f5d9;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .input-area {
+      display: flex;
+      width: 80%;
+      margin: 10px auto;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 12px 16px;
+      background-color: #ffeed6;
+      border: 2px solid #ccc;
+      border-radius: 30px 0 0 30px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .input-area button {
+      background-color: #39462c;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 8px 8px 0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .hint-toggle {
+      width: 90%;
+      margin: 0 auto 10px;
+      display: block;
+      background-color: #39462c;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .chatbot-hint-box {
+      background-color: #fff5e8;
+      border: 1px solid #ffe9cc;
+      padding: 16px 20px;
+      margin: 10px auto 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      width: 90%;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+    }
+
+    .chatbot-hint-box table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: #fff;
+    }
+
+    .chatbot-hint-box th,
+    .chatbot-hint-box td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .chatbot-hint-box th {
+      background-color: #f0e7cd;
+    }
+
+    .chatbot-hint-box.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ 헤더 -->
+  <header>
+    <img src="{% static 'main/images/logo.png' %}" alt="Lending Loan Mentor">
+    <div class="menu-wrapper">
+      <button class="menu-button" onclick="toggleMenu()">⋮</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <button onclick="location.reload()"> 대화 초기화</button>
+        <button onclick="downloadChat()"> 대화 다운로드</button>
+        <button onclick="location.href='/'"> 대화 종료</button>
+        
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ 사이드바 토글 버튼 -->
+  <button class="sidebar-toggle" id="toggleBtn" onclick="toggleSidebar()">☰</button>
+
+  <!-- ✅ 전체 레이아웃 -->
+  <div class="main">
+    <!-- ✅ 사이드바 -->
+    <div class="sidebar" id="sidebar">
+      <img src="{% static 'main/images/logo3.png' %}" alt="Sidebar 로고" />
+      <button onclick="location.href='./main'" class="sidebar-link"> 챗봇 상담</button>
+      <button onclick="location.href='./calculator'" class="sidebar-link"> 대출상환계산기</button>
+    </div>
+
+    <!-- ✅ 챗봇 화면 -->
+    <div class="chat-area">
+      <div class="chat-messages" id="chat-area"></div>
+
+      <!-- ✅ 안내 토글 버튼 + 박스 -->
+      <button class="hint-toggle" onclick="toggleHint()"> 심사 항목 안내 접기/펼치기</button>
+      <div id="hintBox" class="chatbot-hint-box">
+        <strong>💡 더 정확한 상담을 위해 아래 항목들을 함께 입력해 주세요:</strong>
+        <table>
+          <thead>
+            <tr>
+              <th>심사 항목</th>
+              <th>주요 내용 및 영향</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>소득 및 직업 안정성</td><td>연소득, 재직기간, 직장 유형</td></tr>
+            <tr><td>신용등급/점수</td><td>신용점수, 연체 이력, 금융거래</td></tr>
+            <tr><td>기존 부채/대출</td><td>잔액, DSR, 상환 이력</td></tr>
+            <tr><td>은행 거래 실적</td><td>급여이체, 카드, 자동이체</td></tr>
+            <tr><td>기타</td><td>자산, 가족관계, 정책상품 여부</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ✅ 입력창 -->
+      <div class="input-area">
+        <input type="text" id="user-input" placeholder="질문을 입력하세요..." />
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ JS -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const toggleBtn = document.getElementById('toggleBtn');
+      sidebar.classList.toggle('collapsed');
+      toggleBtn.style.left = sidebar.classList.contains('collapsed') ? '10px' : '230px';
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.classList.toggle("open");
+    }
+
+    function toggleHint() {
+      const box = document.getElementById("hintBox");
+      box.classList.toggle("hidden");
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+      input.value = "";
+
+      const userBubble = document.createElement("div");
+      userBubble.className = "chat-bubble user";
+      userBubble.textContent = message;
+      document.getElementById("chat-area").appendChild(userBubble);
+
+      const response = await fetch("/chat/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+
+      const data = await response.json();
+
+      const botBubble = document.createElement("div");
+      botBubble.className = "chat-bubble bot";
+      botBubble.textContent = data.reply;
+      document.getElementById("chat-area").appendChild(botBubble);
+
+      document.getElementById("chat-area").scrollTop = document.getElementById("chat-area").scrollHeight;
+    }
+
+    function downloadChat() {
+      const chatArea = document.getElementById("chat-area");
+      const chatBubbles = chatArea.querySelectorAll(".chat-bubble");
+      let chatText = "";
+
+      chatBubbles.forEach(bubble => {
+        const isUser = bubble.classList.contains("user");
+        const prefix = isUser ? "사용자: " : "챗봇: ";
+        chatText += prefix + bubble.textContent + "\n";
+      });
+
+      const blob = new Blob([chatText], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "chat_log.txt";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
