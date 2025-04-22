@@ -97,6 +97,7 @@
 
 ![Image](https://github.com/user-attachments/assets/321c9560-76d3-453b-9cf3-2cc3cd746cc1)
 # 7. WBS
+![Image](https://github.com/user-attachments/assets/3b2b304f-60d9-40d5-9f42-5bb09d066232)
 # 8. 테스트 계획 및 결과 보고서 (캡처)
 # 9. 수행결과(테스트/시연 페이지)
 # 10. 한 줄 회고
