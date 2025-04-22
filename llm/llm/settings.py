@@ -13,10 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import openai
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +29,7 @@ SECRET_KEY=os.getenv('DJANGO_SECRET_KEY')
 
 
 
-ALLOWED_HOSTS = ['3.35.132.161']
+ALLOWED_HOSTS = ['*', 'localhost']
 
 
 # Application definition
@@ -86,7 +83,7 @@ DATABASES = {
         'NAME': 'djangodb',
         'USER': 'django',
         'PASSWORD': 'django',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4'
@@ -131,10 +128,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'main/static'),  
-]
 
 
 # Default primary key field type
