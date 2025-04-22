@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lending Loan Mentor</title>
+  <meta name="csrf-token" content="{{ csrf_token }}">
   <style>
     /* ... (스타일 생략 없이 전체 유지) ... */
     body {
@@ -359,9 +360,13 @@
       userBubble.textContent = message;
       document.getElementById("chat-area").appendChild(userBubble);
 
-      const response = await fetch("/chat/", {
+      const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+      const response = await fetch("/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken
+        },
         body: JSON.stringify({ message })
       });
 
