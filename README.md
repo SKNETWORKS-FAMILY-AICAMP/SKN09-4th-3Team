@@ -85,7 +85,7 @@
 
 
 # 4. 시스템 구성도
-![system_architect](https://github.com/user-attachments/assets/732f96f9-b2f7-400c-8e18-3a809252be30)
+![Image](https://github.com/user-attachments/assets/ebc98836-5823-47fe-b303-43cee19c34c8)
 
 # 5. 요구사항 정의서 
 ![Image](https://github.com/user-attachments/assets/103185e1-724d-4625-814c-d86533680149)
