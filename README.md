@@ -76,7 +76,7 @@
 | **웹 프레임워크** | ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white) |
 | **LLM 체인 및 자연어 처리** | ![LangChain](https://img.shields.io/badge/LangChain-005F73?style=for-the-badge&logo=LangChain&logoColor=white) |
 | **AI 모델** | ![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=HuggingFace&logoColor=black) ![KoAlpaca](https://img.shields.io/badge/KoAlpaca-ED6C02?style=for-the-badge&logo=AI&logoColor=white) |
-| **데이터베이스 및 임베딩** | ![FAISS](https://img.shields.io/badge/FAISS-009688?style=for-the-badge&logo=FAISS&logoColor=white) |
+| **데이터베이스 및 임베딩** | ![ChromaDB](https://img.shields.io/badge/ChromaDB-009688?style=for-the-badge&logo=ChromaDB&logoColor=white) |
 | **환경변수 관리** | ![python-dotenv](https://img.shields.io/badge/python_dotenv-000000?style=for-the-badge&logo=Python&logoColor=white) |
 | **문서 로딩** | ![PyPDFLoader](https://img.shields.io/badge/PyPDFLoader-4B8BBE?style=for-the-badge&logo=Adobe%20Acrobat%20Reader&logoColor=white) |
 | **인프라 및 배포** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white) ![Amazon AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E?style=for-the-badge&logo=Amazon%20AWS&logoColor=white) |
