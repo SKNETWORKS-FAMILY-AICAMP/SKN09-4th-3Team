@@ -78,7 +78,6 @@
 | **AI 모델** | ![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=HuggingFace&logoColor=black) ![KoAlpaca](https://img.shields.io/badge/KoAlpaca-ED6C02?style=for-the-badge&logo=AI&logoColor=white) |
 | **데이터베이스 및 임베딩** | ![ChromaDB](https://img.shields.io/badge/ChromaDB-009688?style=for-the-badge&logo=ChromaDB&logoColor=white) |
 | **환경변수 관리** | ![python-dotenv](https://img.shields.io/badge/python_dotenv-000000?style=for-the-badge&logo=Python&logoColor=white) |
-| **문서 로딩** | ![PyPDFLoader](https://img.shields.io/badge/PyPDFLoader-4B8BBE?style=for-the-badge&logo=Adobe%20Acrobat%20Reader&logoColor=white) |
 | **인프라 및 배포** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white) ![Amazon AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E?style=for-the-badge&logo=Amazon%20AWS&logoColor=white) |
 | **협업 및 형상관리** | ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white) |
 
