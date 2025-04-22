@@ -85,7 +85,7 @@
 <br>
 
 # 4. 시스템 구성도
-![system_architect](https://github.com/user-attachments/assets/732f96f9-b2f7-400c-8e18-3a809252be30)
+![Image](https://github.com/user-attachments/assets/305b7de7-4d23-4c81-a723-70e5b8a05316)
 
 # 5. 요구사항 정의서 (캡처)
 # 6. 화면설계서 (캡처)
