@@ -88,7 +88,7 @@
 ![system_architect](https://github.com/user-attachments/assets/732f96f9-b2f7-400c-8e18-3a809252be30)
 
 # 5. 요구사항 정의서 
-
+![Image](https://github.com/user-attachments/assets/103185e1-724d-4625-814c-d86533680149)
 
 # 6. 화면설계서
 ![Image](https://github.com/user-attachments/assets/acd9cb73-900a-4d3a-8a85-eb94b6d4f093)
