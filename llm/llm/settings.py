@@ -29,7 +29,7 @@ SECRET_KEY=os.getenv('DJANGO_SECRET_KEY')
 
 
 
-ALLOWED_HOSTS = ['*', 'localhost']
+ALLOWED_HOSTS = ['3.35.132.161']
 
 
 # Application definition
