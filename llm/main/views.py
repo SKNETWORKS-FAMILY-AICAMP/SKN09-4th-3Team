@@ -35,7 +35,7 @@ def chat_api(request):
             formatted_history.append(HumanMessage(content=raw_history[i]))
             if i + 1 < len(raw_history):
                 formatted_history.append(AIMessage(content=raw_history[i+1]))
-        answer, updated_history = ask_from_openai(user_input, formatted_history)
+        answer, updated_history = ask_openai(user_input, formatted_history)
         request.session['chat_history'] = [msg.content for msg in updated_history]
         return JsonResponse({'reply': answer})
 
