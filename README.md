@@ -68,7 +68,7 @@
 
 <br>
 
-## ✅ 3. 기술 스택
+# 3. 기술 스택
 
 | 분야                   | 기술 및 라이브러리 |
 |------------------------|------------------|
@@ -76,28 +76,31 @@
 | **웹 프레임워크** | ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white) |
 | **LLM 체인 및 자연어 처리** | ![LangChain](https://img.shields.io/badge/LangChain-005F73?style=for-the-badge&logo=LangChain&logoColor=white) |
 | **AI 모델** | ![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=HuggingFace&logoColor=black) ![KoAlpaca](https://img.shields.io/badge/KoAlpaca-ED6C02?style=for-the-badge&logo=AI&logoColor=white) |
-| **데이터베이스 및 임베딩** | ![FAISS](https://img.shields.io/badge/FAISS-009688?style=for-the-badge&logo=FAISS&logoColor=white) |
+| **데이터베이스 및 임베딩** | ![ChromaDB](https://img.shields.io/badge/ChromaDB-009688?style=for-the-badge&logo=ChromaDB&logoColor=white) |
 | **환경변수 관리** | ![python-dotenv](https://img.shields.io/badge/python_dotenv-000000?style=for-the-badge&logo=Python&logoColor=white) |
-| **문서 로딩** | ![PyPDFLoader](https://img.shields.io/badge/PyPDFLoader-4B8BBE?style=for-the-badge&logo=Adobe%20Acrobat%20Reader&logoColor=white) |
+| **서버** | ![nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white) ![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=Gunicorn&logoColor=white) |
 | **인프라 및 배포** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white) ![Amazon AWS](https://img.shields.io/badge/Amazon%20AWS-232F3E?style=for-the-badge&logo=Amazon%20AWS&logoColor=white) |
 | **협업 및 형상관리** | ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white) |
 
 
 
 # 4. 시스템 구성도
-![system_architect](https://github.com/user-attachments/assets/732f96f9-b2f7-400c-8e18-3a809252be30)
+![Image](https://github.com/user-attachments/assets/ebc98836-5823-47fe-b303-43cee19c34c8)
 
 # 5. 요구사항 정의서 
-![image](https://github.com/user-attachments/assets/31e35cfe-36cb-48a7-8559-41d803567566)
+![Image](https://github.com/user-attachments/assets/103185e1-724d-4625-814c-d86533680149)
 
 # 6. 화면설계서
-![Image](https://github.com/user-attachments/assets/5c62ac03-5874-422d-917c-fb0948fb9693)
+![Image](https://github.com/user-attachments/assets/acd9cb73-900a-4d3a-8a85-eb94b6d4f093)
 
 ![Image](https://github.com/user-attachments/assets/11e3ccb1-f0d4-452b-bb15-5fbaa7498b82)
 
 ![Image](https://github.com/user-attachments/assets/321c9560-76d3-453b-9cf3-2cc3cd746cc1)
 # 7. WBS
-# 8. 테스트 계획 및 결과 보고서 (캡처)
+![Image](https://github.com/user-attachments/assets/3b2b304f-60d9-40d5-9f42-5bb09d066232)
+# 8. 테스트 계획 및 결과 보고서 
+<테스트 계획서>
+   ![Image](https://github.com/user-attachments/assets/841d20e0-2a48-4ebf-9c0f-062f1aa97da2)
 # 9. 수행결과(테스트/시연 페이지)
 # 10. 한 줄 회고
 💰 서예찬
