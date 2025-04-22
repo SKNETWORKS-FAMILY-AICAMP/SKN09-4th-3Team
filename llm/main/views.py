@@ -14,23 +14,18 @@ def calculator_view(request):
 def redirect_to_main(request):
     return redirect('/main')
 
-def ask_from_openai(message, history):
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-
-    messages = []
-    for msg in history:
-        role = "user" if isinstance(msg, HumanMessage) else "assistant"
-        messages.append({"role": role, "content": msg.content})
-    messages.append({"role": "user", "content": message})
-
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=messages
-    )
-    answer = response["choices"][0]["message"]["content"]
-    updated_history = history + [HumanMessage(content=message), AIMessage(content=answer)]
-    return answer, updated_history
-
+def ask_openai(message, history):
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=history + [{"role": "user", "content": message}]
+        )
+        answer = response.choices[0].message.content.strip()
+        new_history = history + [{"role": "user", "content": message}, {"role": "assistant", "content": answer}]
+        return answer, new_history
+    except Exception as e:
+        return f"에러 발생: {str(e)}", history
+    
 def chat_api(request):
     if request.method == 'POST':
         user_input = request.POST.get('message')
